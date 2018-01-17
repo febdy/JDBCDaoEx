@@ -23,17 +23,21 @@ public class MainApp {
 			System.out.println(aVo.getAuthorId() + " " + aVo.getAuthorName() + " " + aVo.getAuthorDesc());
 		}
 
-		BookVo bVo = new BookVo("aaa");
+		BookVo bVo = new BookVo("책이름", "출판사", "1990-09-09", 1);
 		BookDao bDao = new BookDao();
 		bDao.insertBook(bVo);
 
-		List<AuthorVo> bookList = bDao.selectBookList();
+		List<BookVo> bookList = bDao.selectBookList();
 
 		System.out.println(bookList.size() + "건 발견됨.");
 
 		for (int i = 0; i < bookList.size(); i++) {
 			bVo = bookList.get(i);
-			System.out.println(bVo.getAuthorId() + " " + bVo.getAuthorName() + " " + bVo.getAuthorDesc());
+			System.out.println(bVo.getBookId() + " " + bVo.getTitle() + " " + 
+							   bVo.getPubs() + " " + bVo.getPubDate() + " " + 
+							   bVo.getAuthorId() + " " + bVo.getAuthorName() + " " + bVo.getAuthorDesc());
 		}
+
+		
 	}
 }

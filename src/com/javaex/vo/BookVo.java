@@ -16,13 +16,26 @@ public class BookVo {
 		this.title = title;
 	}
 
-	public BookVo(int bookId, String title, String pubs, String pub_date, int authorId, String authorDesc) {
-		super();
+	public BookVo(String title, int authorId) {
+		this.title = title;
+		this.authorId = authorId;
+	}
+
+	public BookVo(String title, String pubs, String pub_date, int authorId) {
+		this.title = title;
+		this.pubs = pubs;
+		this.pubDate = pub_date;
+		this.authorId = authorId;
+	}
+
+	public BookVo(int bookId, String title, String pubs, String pub_date, int authorId, String authorName,
+			String authorDesc) {
 		this.bookId = bookId;
 		this.title = title;
 		this.pubs = pubs;
 		this.pubDate = pub_date;
 		this.authorId = authorId;
+		this.authorName = authorName;
 		this.authorDesc = authorDesc;
 	}
 
@@ -85,7 +98,7 @@ public class BookVo {
 	@Override
 	public String toString() {
 		return "BookVo [bookId=" + bookId + ", title=" + title + ", pubs=" + pubs + ", pubDate=" + pubDate
-				+ ", authorId=" + authorId + ", authorDesc=" + authorDesc + "]";
+				+ ", authorId=" + authorId + ", authorName=" + authorName + ", authorDesc=" + authorDesc + "]";
 	}
 
 }
