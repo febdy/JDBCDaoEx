@@ -5,9 +5,8 @@ public class BookVo {
 	private String title;
 	private String pubs;
 	private String pubDate;
-	private int authorId;
-	private String authorName;
-	private String authorDesc;
+	private Integer authorId;
+	private AuthorVo author;
 
 	public BookVo() {
 	}
@@ -21,22 +20,17 @@ public class BookVo {
 		this.authorId = authorId;
 	}
 
+	public BookVo(String title, String pubs, int authorId) {
+		this.title = title;
+		this.pubs = pubs;
+		this.authorId = authorId;
+	}
+	
 	public BookVo(String title, String pubs, String pub_date, int authorId) {
 		this.title = title;
 		this.pubs = pubs;
 		this.pubDate = pub_date;
 		this.authorId = authorId;
-	}
-
-	public BookVo(int bookId, String title, String pubs, String pub_date, int authorId, String authorName,
-			String authorDesc) {
-		this.bookId = bookId;
-		this.title = title;
-		this.pubs = pubs;
-		this.pubDate = pub_date;
-		this.authorId = authorId;
-		this.authorName = authorName;
-		this.authorDesc = authorDesc;
 	}
 
 	public int getBookId() {
@@ -71,7 +65,7 @@ public class BookVo {
 		this.pubDate = pub_date;
 	}
 
-	public int getAuthorId() {
+	public Integer getAuthorId() {
 		return authorId;
 	}
 
@@ -79,26 +73,22 @@ public class BookVo {
 		this.authorId = authorId;
 	}
 
-	public String getAuthorName() {
-		return authorName;
+	public void setAuthor(AuthorVo author) {
+		this.author = author;
 	}
 
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
+	public String getAuthorName() {
+		return author.getAuthorName();
 	}
 
 	public String getAuthorDesc() {
-		return authorDesc;
-	}
-
-	public void setAuthorDesc(String authorDesc) {
-		this.authorDesc = authorDesc;
+		return author.getAuthorDesc();
 	}
 
 	@Override
 	public String toString() {
 		return "BookVo [bookId=" + bookId + ", title=" + title + ", pubs=" + pubs + ", pubDate=" + pubDate
-				+ ", authorId=" + authorId + ", authorName=" + authorName + ", authorDesc=" + authorDesc + "]";
+				+ ", authorId=" + authorId + "]";
 	}
 
 }

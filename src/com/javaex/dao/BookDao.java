@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.javaex.vo.AuthorVo;
 import com.javaex.vo.BookVo;
 
 public class BookDao {
@@ -32,7 +34,12 @@ public class BookDao {
 			pstmt.setString(1, bVo.getTitle());
 			pstmt.setString(2, bVo.getPubs());
 			pstmt.setString(3, bVo.getPubDate());
-			pstmt.setInt(4, bVo.getAuthorId());
+			
+			if(bVo.getAuthorId() == null)
+				pstmt.setNull(4, Types.INTEGER);
+			else
+				pstmt.setInt(4, bVo.getAuthorId());
+			
 			pstmt.executeUpdate();
 
 			// 4.결과처리
@@ -62,6 +69,7 @@ public class BookDao {
 	public List<BookVo> selectBookList() {
 		List<BookVo> bookList = new ArrayList<>();
 		BookVo bVo;
+		AuthorVo aVo;
 		// 0. import java.sql.*;
 
 		try {
@@ -85,6 +93,8 @@ public class BookDao {
 			// 4.결과처리
 			while(rs.next()) {
 				bVo = new BookVo();
+				aVo = new AuthorVo();
+				
 				int bookId = rs.getInt("book_id");
 				String title = rs.getString("title");
 				String pubs = rs.getString("pubs");
@@ -98,8 +108,9 @@ public class BookDao {
 				bVo.setPubs(pubs);
 				bVo.setPubDate(pubDate);
 				bVo.setAuthorId(authorId);
-				bVo.setAuthorName(authorName);
-				bVo.setAuthorDesc(authorDesc);
+				aVo.setAuthorName(authorName);
+				aVo.setAuthorDesc(authorDesc);
+				bVo.setAuthor(aVo);
 				
 				bookList.add(bVo);
 			}

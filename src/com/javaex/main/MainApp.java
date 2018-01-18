@@ -10,10 +10,13 @@ import com.javaex.vo.BookVo;
 public class MainApp {
 	public static void main(String[] args) {
 
-		AuthorVo aVo = new AuthorVo("작가이름");
+		// Author Insert
+		// 작가 번호, 작가 이름, 책이름
+		AuthorVo aVo = new AuthorVo("작가이름", "책이름");
 		AuthorDao aDao = new AuthorDao();
 		aDao.insertAuthor(aVo);
 
+		//Author Select
 		List<AuthorVo> authorList = aDao.selectAuthorList();
 
 		System.out.println(authorList.size() + "건 발견됨.");
@@ -23,10 +26,14 @@ public class MainApp {
 			System.out.println(aVo.getAuthorId() + " " + aVo.getAuthorName() + " " + aVo.getAuthorDesc());
 		}
 
-		BookVo bVo = new BookVo("책이름", "출판사", "1990-09-09", 1);
+		
+		// Book Insert
+		// 책이름, 출판사 , 출판일 , 작가번호
+		BookVo bVo = new BookVo("4");
 		BookDao bDao = new BookDao();
 		bDao.insertBook(bVo);
 
+		//Book Select
 		List<BookVo> bookList = bDao.selectBookList();
 
 		System.out.println(bookList.size() + "건 발견됨.");
